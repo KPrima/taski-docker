@@ -93,7 +93,7 @@ jobs:
           # на сервере и в docker-compose.yml не указывать версию
           tags: kprima/taski_backend:latest
   
-    deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: 
       # Дождёмся билда всех образов Taski
@@ -108,12 +108,12 @@ jobs:
       uses: appleboy/scp-action@master
     # Передаём параметры для action appleboy/scp-action:
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "docker-compose.production.yml"
-        target: "taski"
+       host: ${{ secrets.HOST }}
+       username: ${{ secrets.USER }}
+       key: ${{ secrets.SSH_KEY }}
+       passphrase: ${{ secrets.SSH_PASSPHRASE }}
+       source: "docker-compose.production.yml"
+       target: "taski"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
